@@ -29,6 +29,7 @@ const configuration = {
 };
 let room;
 let pc;
+let dataChannel;
 
 
 function onSuccess() {};
@@ -79,6 +80,14 @@ function startWebRTC(isOfferer) {
   if (isOfferer) {
     pc.onnegotiationneeded = () => {
       pc.createOffer().then(localDescCreated).catch(onError);
+    }
+    dataChannel = pc.createDataChannel('chat');
+    setupDataChannel();
+  } else {
+    // If user is not the offerer let wait for a data channel
+    pc.ondatachannel = event => {
+      dataChannel = event.channel;
+      setupDataChannel();
     }
   }
 
