@@ -33,10 +33,6 @@ let dataChannel;
 
 
 function onSuccess() {};
-function onError(error) {
-  console.error(error);
-};
-
 drone.on('open', error => {
   if (error) {
     return console.error(error);
@@ -44,8 +40,9 @@ drone.on('open', error => {
   room = drone.subscribe(roomName);
   room.on('open', error => {
     if (error) {
-      onError(error);
+      return console.error(error);
     }
+    console.log('Connected to signaling server');
   });
   // We're connected to the room and received an array of 'members'
   // connected to the room (including us). Signaling server is ready.
