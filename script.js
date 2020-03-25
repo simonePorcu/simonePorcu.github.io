@@ -23,7 +23,7 @@ const drone = new ScaleDrone('O50F6ChH5cu3t166');
 const roomName = 'observable-' + roomHash;
 const configuration = {
   iceServers: [{
-    urls: 'stun:stunserver.example.org'
+    urls: 'stun:stun.l.google.com:19302'
     
   }]
 };
@@ -33,6 +33,10 @@ let dataChannel;
 
 
 function onSuccess() {};
+function onError(error) {
+  console.error(error);
+};
+
 drone.on('open', error => {
   if (error) {
     return console.error(error);
