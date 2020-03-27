@@ -22,10 +22,9 @@ const drone = new ScaleDrone('O50F6ChH5cu3t166');
 // Room name needs to be prefixed with 'observable-'
 const roomName = 'observable-' + roomHash;
 const configuration = {
-  iceServers: [{
-    urls: 'stun:stun.l.google.com:19302'
-    
-  }]
+  iceTransportPolicy: 'relay',
+    iceServers: [{ urls: 'turn:numb.viagenie.ca', username:'webrtc@live.com', credential:'muazkh' }]
+
 };
 let room;
 let pc;
